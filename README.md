@@ -71,4 +71,18 @@ After that we wrote the script, that would transform this csv into audiofile. To
 python3 transform.py data/SDS814X_HD_CSV_C1_3.csv
 ```
 
+Or there is a better version with filters, which doesn't work with the file above, as there is time difference between it and all the others:
+
+```
+python3 transform_filter.py data/missile.csv
+```
+
+Or you can check out other csvs in data (vox_populate or extra_time) for this algorithm
+
+For this code we used these filters:
+
+- Notch Filter, this filter leaves everything except 5210 Hz as this is a typical frequency for hard drive's servo whine (a buzzing or high-pitched sound during operation)
+- Also low and high cut filters are used to remove all of the mechanical rumble and high-frequency electronic noise that lie outside the range of human speech.
+- Last and not least we use spectral noise reduction, that works by taking first 0,3 seconds of audio as there shouldn't be any music or voice and it memorize the texture of the internal noise and subtracts it from the rest of the file
+
 And from that we finally were able to get the audio.
