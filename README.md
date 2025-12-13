@@ -62,3 +62,13 @@ _Figure: Location of AMUX pin on Seagate Baracuda 7200.12 1TB._
 After getting the correct drive we tried to do the same but didn't get any results, at this point we were frustrated and were not understanding why it doesn't work, and after some discussions decided to check the **e** command as we found before **e0** turned PES output on and **e1** turned it off. But after some tries and reading we discovered that ex (x is some number) turns on pes output with a certain resolution 0 - smallest FF - largest, and ex,y or anything after the comma turns off PES output, with this new information we tried to do this again and for our happines it worked, and we were able to see the PES signal:
 
 ![PES output on oscilloscope](images/pes_out.png)
+
+Now, having found it, we need to read it, there are two ways, we can solder to the AMUX pin, then connect it to ADC (Analog Digital converter), and get it from there, but as we did not have an ADC w tried to do it through oscilloscope, as it can save the wavefrom, so we connected eveything to the oscilloscope, played a song, and saved 10 seconds of the waveform.
+
+After that we wrote the script, that would transform this csv into audiofile. To run and see the results:
+
+```
+python3 transform.py data/SDS814X_HD_CSV_C1_3.csv
+```
+
+And from that we finally were able to get the audio.
